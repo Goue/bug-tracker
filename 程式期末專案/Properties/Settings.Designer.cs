@@ -33,5 +33,16 @@ namespace 程式期末專案.Properties {
                 return ((string)(this["Database1ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database3.mdf" +
+            ";Integrated Security=True")]
+        public string Database3ConnectionString {
+            get {
+                return ((string)(this["Database3ConnectionString"]));
+            }
+        }
     }
 }

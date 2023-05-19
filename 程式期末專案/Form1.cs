@@ -15,6 +15,7 @@ namespace 程式期末專案
     public partial class Form1 : Form
     {
         public string stCon = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True";
+        public string stname = "";
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace 程式期末專案
         {
 
         }
-
+        
         private void buttonSignin_Click(object sender, EventArgs e)
         {
             string staccount = textaccount.Text;
@@ -59,24 +60,59 @@ namespace 程式期末專案
             }
             for (int i = 0; i < dataTableaccount.Rows.Count; i++)
             {
-                if (staccount == arraylevel[0, i])
+                if (staccount == arraylevel[0, i] & stpassword == arraylevel[1, i])
                 {
-                    if (stpassword == arraylevel[1, i])
-                    {
-                        stlevel = arraylevel[2, i];
-                        Form1.ActiveForm.Opacity = 0;
+                    stlevel = arraylevel[2, i];
+                    if (stlevel == "staff")
+                       {
+                        stname = arraylevel[0, i];
                         Form2 form2 = new Form2();
-                        form2.ShowDialog();
-                        break;
+                        form2.puname = stname;
+                        form2.Show();
+                        textaccount.Text = "";
+                        textpassword.Text = "";
+                        this.Hide();
                     }
+                    else if(stlevel=="test")
+                    {
+                        stname = arraylevel[0, i];
+                        Form4 form4 = new Form4();
+                        form4.puname = stname;
+                        form4.Show();
+                        textaccount.Text = "";
+                        textpassword.Text = "";
+                        this.Hide();
+                    }
+                    else if(stlevel == "engineer")
+                    {
+                        stname = arraylevel[0, i];
+                        Form5 form5 = new Form5();
+                        form5.pustengineer = stname;
+                        form5.Show();
+                        textaccount.Text = "";
+                        textpassword.Text = "";
+                        this.Hide();
+                    }
+                    else if (stlevel == "administrator")
+                    {
+                        stname = arraylevel[0, i];
+                        Form8 form8 = new Form8();
+                        form8.Show();
+                        textaccount.Text = "";
+                        textpassword.Text = "";
+                        this.Hide();
+                    }
+                    break;
                 }
+                if(i== dataTableaccount.Rows.Count-1)
+                    MessageBox.Show("登入失敗", "警告");
             }
             conn.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -87,6 +123,21 @@ namespace 程式期末專案
         private void button1_Click_1(object sender, EventArgs e)
         {
             
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Form1_Deactivate(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
 }
